@@ -7,11 +7,26 @@
   --foreground: #171717;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
+} */
+
+.jersey {
+  font-family: var(--font-jersey-15-regular);
+}
+
+.pixelify {
+  font-family: var(--font-pixelify-sans);
+}
+
+.pressStart {
+  font-family: var(--font-press-start-2p);
+}
+.syneMono {
+  font-family: var(--font-syne-mono);
 }
 
 body {
