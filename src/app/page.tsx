@@ -37,7 +37,7 @@ const ButtonGroup = () => {
         href="register"
         variant={LinkButtonVariant.Filled}
       />
-      <LinkButton title="Sign in" href="signin" />
+      <LinkButton title="Sign in" href="feed" />
     </div>
   );
 };
