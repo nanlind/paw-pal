@@ -7,7 +7,6 @@ import { FriendStatus } from "./FriendStatus";
 interface DoggosProps {
   dog: DogProps;
   isFriend: boolean;
-  updateFriendship: () => void;
 }
 
 export const Doggos = ({ dog, isFriend }: DoggosProps) => {

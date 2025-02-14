@@ -19,6 +19,7 @@ interface FriendsInParkModalProps {
   visitors: DogProps[] | null;
   onClose: () => void;
   friends: string[];
+  updateFriendship: (dogId: string) => void;
 }
 
 const PARK_NAME_MAX_LENGTH = 26;
@@ -29,6 +30,7 @@ export const FriendsInParkDialog = ({
   visitors,
   park,
   onClose,
+  updateFriendship,
 }: FriendsInParkModalProps) => {
   const bffsInPark = visitors?.filter((visitor) =>
     friends.includes(visitor.id)
@@ -81,7 +83,11 @@ export const FriendsInParkDialog = ({
                 <ul>
                   {potentialFriendsInPark?.map((visitor) =>
                     visitor ? (
-                      <NewDogInPark name={visitor.name} key={visitor.id} />
+                      <NewDogInPark
+                        name={visitor.name}
+                        key={visitor.id}
+                        updateFriendship={() => updateFriendship(visitor.id)}
+                      />
                     ) : null
                   )}
                 </ul>

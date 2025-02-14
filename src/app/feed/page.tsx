@@ -106,7 +106,7 @@ export default function Feed() {
   }, [doggos, user, storage]);
 
   return (
-    <div className="bg-blue-100 flex flex-col items-center">
+    <div className="bg-blue-50 flex flex-col items-center">
       <NavBar
         showFriendFeed={showFriendFeed}
         setShowFriendFeed={setShowFriendFeed}
@@ -116,14 +116,7 @@ export default function Feed() {
         {showFriendFeed
           ? doggos.map((dog) => {
               const isFriend = user.friends.includes(dog.id);
-              return (
-                <Doggos
-                  dog={dog}
-                  key={dog.id}
-                  isFriend={isFriend}
-                  updateFriendship={() => handleFriendship(dog.id)}
-                />
-              );
+              return <Doggos dog={dog} key={dog.id} isFriend={isFriend} />;
             })
           : parks.map((park) => {
               return (
@@ -133,6 +126,7 @@ export default function Feed() {
                   isCheckedIn={user.atPark === park.id}
                   handleCheckInOrOut={() => handleParkVisit(park.id)}
                   visitors={visitors ? visitors[park.id] : null}
+                  updateFriendship={handleFriendship}
                   friends={user.friends}
                 />
               );

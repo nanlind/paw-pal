@@ -10,6 +10,7 @@ interface ParkComponentProps {
   isCheckedIn: boolean;
   park: ParkProps;
   visitors: DogProps[] | null;
+  updateFriendship: (dogId: string) => void;
 }
 
 export const Park = ({
@@ -18,6 +19,7 @@ export const Park = ({
   isCheckedIn,
   park,
   visitors,
+  updateFriendship,
 }: ParkComponentProps) => {
   const [openModal, setOpenModal] = useState<boolean>(false);
 
@@ -47,6 +49,7 @@ export const Park = ({
         open={openModal}
         visitors={visitors}
         friends={friends}
+        updateFriendship={updateFriendship}
         onClose={() => {
           setOpenModal(!openModal);
         }}

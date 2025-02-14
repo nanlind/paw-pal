@@ -2,7 +2,11 @@ import { delay, getFriendshipErrorMessage, rollDice } from "@/app/utils/utils";
 import { toaster } from "@/components/ui/toaster";
 import { useState } from "react";
 
-export const NewDogInPark = ({ name }: { name: string }) => {
+interface NewDogInParkProps {
+  name: string;
+  updateFriendship: () => void;
+}
+export const NewDogInPark = ({ name, updateFriendship }: NewDogInParkProps) => {
   const [isSmellingButt, setIsSmellingButt] = useState(false);
 
   function onButtSmell() {
@@ -11,6 +15,7 @@ export const NewDogInPark = ({ name }: { name: string }) => {
       .then(() => {
         const isSuccess = rollDice();
         if (isSuccess) {
+          updateFriendship();
           toaster.create({
             description: "You are now BFFs! ♥️",
             duration: 2000,

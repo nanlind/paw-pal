@@ -5,7 +5,7 @@ interface NavBarProps {
 
 export const NavBar = ({ showFriendFeed, setShowFriendFeed }: NavBarProps) => {
   return (
-    <nav className="flex justify-between p-4 w-4/12 ">
+    <nav className="flex justify-between p-4 w-5/12 ">
       <h1 className="text-black text-xl pressStart">Paw Pal</h1>
       <div className="flex gap-4">
         <button
