@@ -1,14 +1,20 @@
 "use client";
 
+import { Icon } from "@chakra-ui/react";
 import Image from "next/image";
 import { useRef, useState } from "react";
 
 interface ProfileImageProps {
   size: number;
+  imageUrl: string | null;
+  setImageUrl: (url: string | null) => void;
 }
 
-export const ProfileImage = ({ size }: ProfileImageProps) => {
-  const [imageUrl, setImageUrl] = useState<string | null>(null);
+export const ProfilePic = ({
+  imageUrl,
+  setImageUrl,
+  size,
+}: ProfileImageProps) => {
   const [isUploading, setIsUploading] = useState<boolean>(false);
 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -34,16 +40,18 @@ export const ProfileImage = ({ size }: ProfileImageProps) => {
   return (
     <div className={"flex flex-col justify-center gap-4"}>
       <div
-        className={`min-w-[${size}px] min-h-[${size}px] bg-gray-200 rounded-full flex items-center justify-center overflow-auto`}
+        className={`w-[${size}px] h-[${size}px] bg-gray-200 rounded-full flex items-center justify-center overflow-auto`}
       >
         {!imageUrl ? (
-          <Image
-            className="dark:invert"
-            src="/ImageIcon.svg"
-            alt="Image icon"
-            width="24"
-            height="24"
-          />
+          <Icon fontSize="24">
+            <Image
+              className="dark:invert"
+              src="/ImageIcon.svg"
+              alt="Image icon"
+              width="24"
+              height="24"
+            />
+          </Icon>
         ) : (
           <Image
             src={imageUrl}
@@ -65,7 +73,11 @@ export const ProfileImage = ({ size }: ProfileImageProps) => {
         onClick={() => fileInputRef.current?.click()}
         disabled={isUploading}
       >
-        {isUploading ? "Uploading ..." : "Upload"}
+        {!imageUrl
+          ? isUploading
+            ? "⏳ Uploading ..."
+            : "Upload profile picture"
+          : "Change profile picture"}
       </button>
     </div>
   );
